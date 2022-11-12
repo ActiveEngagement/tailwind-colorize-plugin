@@ -1,52 +1,65 @@
-# Tailwind Color  
+# Tailwind Color Plugin
 
 ![test](./assets/banner.png)
 
-I ❤️ Tailwind, but I loathe when I have to create new colors. 🟥 🟧 🟨 🟩 🟦 
+I ❤️ Tailwind, but I loathe when I have to create new color weights. 🟥 🟧 🟨 🟩 🟦 
 
 It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, and potentially editing the config to save the color, and repeating the process until it is correct.
 
 ### Project Goals
 
 - Expressive, fluent, and chainable syntax that is easy to remember.
-- The syntax must be truly parsed to show errors and how to fix them.
 - Flexible and customizable to work for as many situations as possible.
-- Make use of theme colors or arbitrary colors in `hex`, `hsl`, and `rgb` formats.
+- Make use of Tailwind theme colors and arbitrary colors in various formats, such as `hex`, `hsl`, and `rgb`.
 - Make use of [color](https://www.npmjs.com/package/color) to manipulate the actual colors.
+- Make use of [peggy](https://peggyjs.org/) to parse the expressions.
 
-## A Little Background 
+### A Little Background 
 
-I built this plugin because I found myself running out colors, or not having enough subtlety between the color variations, especially when adding dark mode to applications. And the tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on the standard colors is pretty large. 
+I built this plugin because I found myself running out colors, or not having enough subtlety between the color variations, especially when adding dark mode support to applications. The tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on any of on the standard colors is pretty large.
 
-Let's take a button for example which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but the active state and hover state are a bit too stark for my taste.
+Let's take a button for example which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to define anything in the config, let alone take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
 
-What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to define anything in the config, let alone take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
+### Installation
 
-## Getting Started
-
-### NPM
+#### NPM
 ```bash
 npm i tailwind-colorize-plugin
 ```
 
-### Yarn
+#### Yarn
 ```bash
 yarn add tailwind-colorize-plugin
 ```
 
-### Tailwind Config
+#### Tailwind Config
 ```js
 // tailwind.config.js
 const colorize = require('tailwind-colorize-plugin');
 
 module.exports = {
     plugins: [
-        colorize()
+        colorize({
+            // Document plugin options here
+        })
     ]
 }
 ```
 
-## Available Methods
+### Basic Examples
+
+```html
+<!-- Darken the "red.500" color 10%. -->
+<div class="bg-colorize-[red.500.darken(.1)] w-12 h-12 rounded"></div>
+
+<!-- Mix the "slate.800" color with "slate.900" at 25% rate to get a calculate "slate.825". -->
+<div class="text-colorize-[slate.800.mix(slate.900,.25)] w-12 h-12 rounded"></div>
+
+<!-- Mix the "slate.800" color equally with "slate.900" that has been darkened 25%. -->
+<div class="border-colorize-[slate.800.mix(slate.900.darken(.25))] w-12 h-12 rounded"></div>
+```
+
+## Available Color Methods
 
 This plugin uses [color](https://www.npmjs.com/package/color) under the hood to process the actual color manipulations. The parser will analyze the syntax and expose an API that is very similar to the JS syntax.
 
@@ -82,7 +95,7 @@ color.green(100).grayscale().lighten(0.6)
 
 ## Syntax
 
-The plugin uses a PEG parser to tokenize the syntax and parse it in real time. The expression chain must start with a color. A color may be CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl`. 
+The plugin uses a PEG parser to tokenize the expression in real time. The expression must start with a color and may include method chains that manipulate and return a new `Color` instance. A color may be CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl`. For a more detailed description of the lexical grammar, you may wish to refer to the definition file `grammar.pegjs`.
 
 *The syntax is sensitive to whitespace. DO NOT use any spaces.*
 

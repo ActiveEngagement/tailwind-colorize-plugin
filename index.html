@@ -10,18 +10,10 @@
   <body class="container mx-auto text-xl">
     <h1 class="text-5xl font-bold mb-6">Tailwind Colorize Demo</h1>
 
-    <p>Often times you want a color within the template based on another color, but you don't want to define a new color in `tailwind.config.js`</p>
-
     <div class="flex flex-col gap-4">
       <div>
         <h2 class="text-4xl font-bold mb-4">Fade</h2>
         
-        <div class="my-12">
-        <button class="p-2 rounded text-white bg-slate-700 hover:bg-colorize-[slate.700.darken(.05)] active:bg-colorize-[slate.700.darken(.15)]">
-            Click Me!
-        </button>
-      </div>
-      
         <div class="flex gap-2">
           <div class="bg-colorize-[red.500.fade(0)] w-24 h-24 rounded-lg"></div>
           <div class="bg-colorize-[red.500.fade(.1)] w-24 h-24 rounded-lg"></div>

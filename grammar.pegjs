@@ -4,58 +4,73 @@
     }
 }}
 
-Start = Expression
+Start
+    = Expression
 
-Expression = Color MethodCall?
+Expression
+    = Color MethodCall?
 
-Number = decimal:"."? digits:([0-9]+) {
-    return new function LiteralValue() {
-        this.id = 'LiteralValue';
-    	this.value = Number(join(decimal, ...digits))
+Number
+    = decimal:"."? digits:([0-9]+) {
+        return new function LiteralValue() {
+            this.id = 'LiteralValue';
+            this.value = Number(join(decimal, ...digits))
+        }
     }
-}
 
-String = value: [a-zA-Z0-9]+ { return value.join('') }
+String
+    = value: [a-zA-Z0-9]+ { return value.join('') }
 
-HexChar = [0-9a-fA-F]
+HexChar
+    = [0-9a-fA-F]
 
-Color = ThemeColor/RgbFunction/LongHexCode/ShortHexCode/Number
-ColorWeight = value:("." String)
+Color
+    = ThemeColor/RgbFunction/LongHexCode/ShortHexCode/Number
 
-ThemeColor = name:String weight:ColorWeight? {
-    return new function ThemeColor() {
-        this.id = 'ThemeColor';
-        this.name = name;
-        this.weight = weight && weight.pop();
-    };
-}
+ColorWeight
+    = value:("." String)
 
-RgbFunction = value:('rgb(' [0-9]+ ',' [0-9]+ ',' [0-9] ')') {
-    return value.join('')
-}
-
-LongHexCode = code:('#' HexChar HexChar HexChar HexChar HexChar HexChar) {
-    return new function LongHexCode() {
-        this.id = 'LongHexCode';
-        this.code = join(code);
+ThemeColor
+    = name:String weight:ColorWeight? {
+        return new function ThemeColor() {
+            this.id = 'ThemeColor';
+            this.name = name;
+            this.weight = weight && weight.pop();
+        };
     }
-}
 
-ShortHexCode = code:('#' HexChar HexChar HexChar) {
-    return new function ShortHexCode() {
-        this.id = 'ShortHexCode';
-        this.code = join(code);
+RgbFunction
+    = value:('rgb(' [0-9]+ ',' [0-9]+ ',' [0-9] ')') {
+        return value.join('')
     }
-}
 
-MethodCall = ("." fn: Function { return fn })*
-
-Function = name:String "(" args:FunctionArguments ")" {
-    return new function MethodCall() {
-        this.id = 'MethodCall';
-        this.name = name;
-        this.args = args.map(([comma, arg]) => arg);
+LongHexCode
+    = code:('#' HexChar HexChar HexChar HexChar HexChar HexChar) {
+        return new function LongHexCode() {
+            this.id = 'LongHexCode';
+            this.code = join(code);
+        }
     }
-}
 
-FunctionArguments = (comma:","? (arg:Expression { return arg })) *
+ShortHexCode
+    = code:('#' HexChar HexChar HexChar) {
+        return new function ShortHexCode() {
+            this.id = 'ShortHexCode';
+            this.code = join(code);
+        }
+    }
+
+MethodCall
+    = ("." fn: Function { return fn })*
+
+Function
+    = name:String "(" args:FunctionArguments ")" {
+        return new function MethodCall() {
+            this.id = 'MethodCall';
+            this.name = name;
+            this.args = args.map(([comma, arg]) => arg);
+        }
+    }
+
+FunctionArguments
+    = (comma:","? (arg:Expression { return arg })) *
