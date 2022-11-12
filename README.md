@@ -1,10 +1,8 @@
-# Tailwind Color Plugin
+# Tailwind Color Plugin 🟥 🟧 🟨 🟩 🟦 
 
 ![test](./assets/banner.png)
 
-I ❤️ Tailwind, but I loathe when I have to create new color weights. 🟥 🟧 🟨 🟩 🟦 
-
-It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, and potentially editing the config to save the color, and repeating the process until it is correct.
+I ❤️ Tailwind, but I loathe when I have to create new colors and weight variations. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, and potentially editing the config to save the color, and repeating the process until it is correct.
 
 ### Project Goals
 
