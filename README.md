@@ -93,7 +93,7 @@ color.green(100).grayscale().lighten(0.6)
 
 ## Syntax
 
-The plugin uses a PEG parser to tokenize the expression in real time. The expression must start with a color and may include method chains that manipulate and return a new `Color` instance. A color may be CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl`. For a more detailed description of the lexical grammar, you may wish to refer to the definition file `grammar.pegjs`.
+The plugin uses a PEG parser to tokenize the expression in real time. The expression must start with a color and may include method chains that manipulate and return a new `Color` instance. A color may be a CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl` format. For a more detailed description of the lexical grammar, you may wish to refer to the definition file `grammar.pegjs`.
 
 *The syntax is sensitive to whitespace. DO NOT use any spaces.*
 
