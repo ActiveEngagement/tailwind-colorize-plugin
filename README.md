@@ -101,7 +101,7 @@ The plugin uses a PEG parser to tokenize the expression in real time. The expres
 
 Colors are defined by using their name as a literal, following by an optional weight, if its a theme color that has weights defined. The following are valid color example of how one would begin an expression.
 
-```
+```js
 // Theme Colors
 red.500
 slate.900
@@ -126,10 +126,7 @@ hsl(0,84.2,60.2)
 
 Methods arguments are recursive. Each method must return a new instance of `Color`, so each method in the chain modifies a new instance until it reaches the end of the line.
 
-```
-// Concept
-[color][.method(...args)?]*
-
+```js
 // Theme Colors
 red.500.darken(.1)
 red.500.darken(.1).mix(yellow.200.darken(.1),.5)
