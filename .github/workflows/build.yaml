@@ -15,7 +15,11 @@ jobs:
     - name: Generate PEG Parser 🤖
       run: npm run compile
     - name: Run Jest 🃏
-      run: npm test  
+      run: npm test
+    - name: Submit Coverage Report 📡
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
     - name: Publish package on NPM 📦
       uses: JS-DevTools/npm-publish@v1
       with:
