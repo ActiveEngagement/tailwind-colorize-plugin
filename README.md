@@ -1,6 +1,6 @@
 # Tailwind Color Plugin 🟥 🟧 🟨 🟩 🟦 
 
-![Tests](https://github.com/ActiveEngagement/tailwind-colorize-plugin/actions/workflows/test.yaml/badge.svg)
+![Tests](/actions/workflows/tests.yaml/badge.svg)
 
 ![test](./assets/banner.png)
 
