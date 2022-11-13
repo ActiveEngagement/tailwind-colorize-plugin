@@ -2,7 +2,7 @@
   "name": "tailwind-colorize-plugin",
   "description": "A fluent and expressive way to manipulate colors with Tailind CSS.",
   "module": "index.ts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
