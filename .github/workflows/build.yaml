@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install modules 
+    - name: Install Modules 🔌 
       run: npm ci
     - name: Build Javascript Bundle 🧱
       run: npm run build
@@ -16,11 +16,11 @@ jobs:
       run: npm run compile
     - name: Run Jest 🃏
       run: npm test
-    - name: Coveralls
+    - name: Send Coverage Report 📡
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Create Release
+    - name: Create Release 🪧
       id: create_release
       uses: actions/create-release@v1
       env:
