@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install modules 
+    - name: Install Modules 🔌
       run: npm ci
     - name: Build Javascript Bundle 🧱
       run: npm run build
     - name: Generate PEG Parser 🤖
       run: npm run compile
-    - name: Run Jest 🃏
-      run: npm test
+    - name: Run Coverage Report 📄
+      run: npm coverage
     - name: Submit Coverage Report 📡
       uses: coverallsapp/github-action@master
       with:
