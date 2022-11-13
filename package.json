@@ -2,7 +2,7 @@
   "name": "tailwind-colorize-plugin",
   "main": "dist/tailwind-colorize.umd.js",
   "module": "dist/tailwind-colorize.es.js",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
