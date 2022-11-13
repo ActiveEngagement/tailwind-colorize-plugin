@@ -2,14 +2,14 @@
   "name": "tailwind-colorize-plugin",
   "main": "dist/tailwind-colorize.umd.js",
   "module": "dist/tailwind-colorize.es.js",
-  "version": "0.0.4",
+  "version": "0.0.8",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "compile": "peggy src/grammar.pegjs --output ./grammar.js",
-    "test": "jest",
-    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
