@@ -15,7 +15,7 @@ jobs:
     - name: Generate PEG Parser 🤖
       run: npm run compile
     - name: Run Coverage Report 📄
-      run: npm coverage
+      run: npm run coverage
     - name: Submit Coverage Report 📡
       uses: coverallsapp/github-action@master
       with:
