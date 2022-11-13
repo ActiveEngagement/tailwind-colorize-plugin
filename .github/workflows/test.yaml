@@ -1,8 +1,7 @@
 name: Build
 on:
-  push:
-    tags:
-      - v*
+  pull_request:
+    types: [opened, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,8 +14,3 @@ jobs:
     - name: Generate PEG Parser 🤖
       run: npm run compile
     - name: Run Jest 🃏
-      run: npm test
-    - name: Publish package on NPM 📦
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
