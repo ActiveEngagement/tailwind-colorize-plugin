@@ -20,8 +20,8 @@ describe('the transform() function', () => {
         expect(parse('red.500.lighten(.5)')).toBe('#FBD1D1')
     });
 
-    test('#000.green(255).red(255).mix(rgb(0,0,0),.5).mix(red.500.lighten(.5),.1) returns #8B7A07', () => {
-        expect(parse('#000.green(255).red(255).mix(rgb(0,0,0),.5).mix(red.500.lighten(.5),.1)')).toBe('#8B7A07')
+    test('#000.green(255).red(255).mix(rgb(0,0,0),.5).mix(red.500.lighten(.5),.1) returns #8C8815', () => {
+        expect(parse('#000.green(255).red(255).mix(rgb(0,0,0),.5).mix(red.500.lighten(.5),.1)')).toBe('#8C8815')
     });
 
     test('various syntax errors', () => {
@@ -75,5 +75,8 @@ describe('the transform() function', () => {
         expect(() => parse('hsl(100,100,%100)')).toThrowError();
         expect(() => parse('hsl(100,100,100)')).toThrowError();
         expect(() => parse('hsl(a,b,c)')).toThrowError();
+        expect(() => parse('hsl(1,b,c)')).toThrowError();
+        expect(() => parse('hsl(1,2,c)')).toThrowError();
+        expect(() => parse('hsl(1,2,c)')).toThrowError();
     });
 });

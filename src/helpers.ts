@@ -3,7 +3,11 @@ import { get } from "lodash";
 
 export function useTheme({ theme: config }: any) {
 
-    function transformArgument(arg: any) {
+    function transformArgument(arg: any): any {
+        if(Array.isArray(arg)) {
+            return transform(<[Color, Function[]]>arg);
+        }
+        
         switch(arg.id) {
             case 'ShortHexCode':
             case 'LongHexCode':
@@ -19,7 +23,8 @@ export function useTheme({ theme: config }: any) {
 
     function transform([subject, calls]: [Color, Function[]]) {
         return calls.reduce((carry: any, call: any) => {
-            const args = call.args.map(transformArgument);
+            const args = call.args.map(transformArgument)
+                .filter((value: any) => value !== undefined);
 
             if(typeof carry[call.name] !== 'function') {
                 throw new Error(`${call.name} is not a method on ${carry}`);

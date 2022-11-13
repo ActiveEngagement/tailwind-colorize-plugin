@@ -256,7 +256,13 @@ function peg$parse(input, options) {
         return new function MethodCall() {
             this.id = 'MethodCall';
             this.name = name;
-            this.args = args.map(([comma, [arg]]) => arg);
+            this.args = args.map(([comma, [subject, calls]]) => {
+                if(calls.length) {
+                    return [subject, calls];
+                }
+
+                return subject;
+            });
         }
     };
   var peg$f13 = function(comma, arg) { return arg };

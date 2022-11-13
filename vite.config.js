@@ -38,7 +38,7 @@ export default defineConfig({
     ],
     build: {
         lib: {
-            entry: resolve(__dirname, "index.ts"),
+            entry: resolve(__dirname, "src/index.ts"),
             name: "tailwind-colorize",
             fileName: (format) => `tailwind-colorize.${format}.js`,
         },

@@ -24,7 +24,7 @@ export default function colorize(options: ColorizeOptions = {
                     const parsed = parse(value);
 
                     return {
-                        [prop]: transform(parsed).toString()
+                        [prop]: transform(parsed).rgb().toString()
                     };
                 }
             }, {
@@ -36,7 +36,7 @@ export default function colorize(options: ColorizeOptions = {
             colorize: {
                 props: {
                     border: 'borderColor',
-                    bg: 'backgroundColor',
+                    bg: 'background',
                     text: 'color',
                 }
             }

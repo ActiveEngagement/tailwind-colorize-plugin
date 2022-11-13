@@ -5,14 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tailwind Colorize Demo</title>
+    <link rel="stylesheet" href="./index.css">
   </head>
   <body>
+    <div id="box" class="w-24 h-24"></div>
+    
     <script type="module">
       import resolveConfig from 'tailwindcss/resolveConfig';
 
-      import { parse } from './grammar.pegjs';
-
       import tailwindConfig from './tailwind.config.js'
+
+      import { parse } from './src/grammar.pegjs';
 
       import { useTheme } from './src/helpers';
 
@@ -20,7 +23,7 @@
       const { transform } = useTheme(resolveConfig(tailwindConfig));
 
       // Transform the parsed AST into a Color object.
-      console.log(transform(parse('rgb(0,0,0).green(255).mix(rgb(255,255,255),.5)')).hex());
+      document.getElementById('box').style.backgroundColor = transform(parse('#000.green(255).mix(#000.red(255))')).rgb();
     </script>
   </body>
 </html>

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "compile": "peggy grammar.pegjs",
+    "compile": "peggy src/grammar.pegjs --output ./grammar.js",
     "test": "jest"
   },
   "devDependencies": {
