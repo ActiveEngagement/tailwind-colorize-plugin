@@ -2,8 +2,7 @@
   "name": "tailwind-colorize-plugin",
   "main": "dist/tailwind-colorize.umd.js",
   "module": "dist/tailwind-colorize.es.js",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
