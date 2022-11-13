@@ -15,8 +15,8 @@ jobs:
     - name: Generate PEG Parser 🤖
       run: npm run compile
     - name: Run Jest 🃏
-      run: npm test
+      run: npm test  
     - name: Publish package on NPM 📦
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
