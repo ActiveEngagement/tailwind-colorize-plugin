@@ -1,5 +1,7 @@
 # Tailwind Color Plugin 🟥 🟧 🟨 🟩 🟦 
 
+![Colorize Banner](./assets/banner.png)
+
 ![Version](https://img.shields.io/github/package-json/v/ActiveEngagement/tailwind-colorize-plugin/master?label=Version)
 ![Build Status](https://github.com/ActiveEngagement/tailwind-colorize-plugin/actions/workflows/build.yaml/badge.svg)
 ![Code Coverage](https://img.shields.io/coveralls/github/ActiveEngagement/tailwind-colorize-plugin?logo=Jest)
