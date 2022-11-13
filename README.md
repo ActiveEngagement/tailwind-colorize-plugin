@@ -25,7 +25,7 @@ I ❤️ Tailwind and it has completely revolutionized the way we write CSS. But
 
 I built this plugin because I found myself running out colors, or not having enough subtlety between the color variations, especially when adding dark mode support to applications. The tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on any of on the standard colors is pretty large.
 
-Let's take a button which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but difference between the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to define anything in the config, let alone take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
+Let's take a button which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but difference between the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
 
 Let me introduce you to Tailwind Colorize...
 
@@ -49,7 +49,7 @@ const colorize = require('tailwind-colorize-plugin');
 module.exports = {
     plugins: [
         colorize({
-            // Document plugin options here
+            // @todo: Document plugin options here
         })
     ]
 }
@@ -57,7 +57,7 @@ module.exports = {
 
 ## Getting Started
 
-Your themes are one of the definition characters of your app. However, there are times you may just want to make slight adjustments, like wanting `slate.850` or `slate.825` without having to figure out what that value is. Or even, a blend of two color.
+Your themes are one of the defining characteristics of your app. However, there are times you may just want to make slight adjustments, like wanting `slate.850` or `slate.825` without having to figure out what that value is. Or even, a blend of two color.
 
 Tailwind Colorize doesn't take much to get start. It will parse your theme automatically. Not worry, anything that you have defined will stay the same unless it is a valid "colorized" syntax, in which is it be parsed and the returned color will be used. All the core Tailwind plugins are supported out of the box.
 
