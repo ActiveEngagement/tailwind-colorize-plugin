@@ -10,7 +10,8 @@
     "compile": "peggy src/grammar.pegjs --output ./grammar.js",
     "test": "jest --coverage",
     "test:coverage": "npm test -- --coverage",
-    "test:badges": "npm run test:coverage && jest-coverage-badges && git commit . -m 'New coverage report and badges.'"
+    "test:badges": "npm run test:coverage && jest-coverage-badges && npm run test:commit",
+    "test:commit": "git add . && git commit -m 'New coverage report and badges.'"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
