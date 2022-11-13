@@ -10,8 +10,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Modules 🔌 
       run: npm ci
-    - name: Build Javascript Bundle 🧱
-      run: npm run build
     - name: Generate PEG Parser 🤖
       run: npm run compile
     - name: Run Jest 🃏

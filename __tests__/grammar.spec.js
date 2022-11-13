@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { parse as base } from '../grammar';
 
-function parse(value: string): any {
+function parse(value) {
     return base(value)
 }
 
