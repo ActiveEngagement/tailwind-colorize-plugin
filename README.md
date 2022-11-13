@@ -1,5 +1,7 @@
 # Tailwind Color Plugin 🟥 🟧 🟨 🟩 🟦 
 
+![Tests](https://github.com/ActiveEngagement/tailwind-colorize-plugin/actions/workflows/test.yaml/badge.svg)
+
 ![test](./assets/banner.png)
 
 I ❤️ Tailwind, but I loathe when I have to create new colors and color variations. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating the process until it is correct. The goal is manipulate colors syntaxically in a similar way we already use colors in Tailwind.
