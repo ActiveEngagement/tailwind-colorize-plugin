@@ -7,6 +7,20 @@
     <title>Tailwind Colorize Demo</title>
   </head>
   <body>
-    <script type="module" src="./main.ts"></script>
+    <script type="module">
+      import resolveConfig from 'tailwindcss/resolveConfig';
+
+      import { parse } from './grammar.pegjs';
+
+      import tailwindConfig from './tailwind.config.js'
+
+      import { useTheme } from './src/helpers';
+
+      // Resolve the config and run useTheme() to get the instance.
+      const { transform } = useTheme(resolveConfig(tailwindConfig));
+
+      // Transform the parsed AST into a Color object.
+      console.log(transform(parse('rgb(0,0,0).green(255).mix(rgb(255,255,255),.5)')).hex());
+    </script>
   </body>
 </html>

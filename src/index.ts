@@ -1,5 +1,5 @@
 import plugin from 'tailwindcss/plugin';
-import { useTheme } from './src/helpers';
+import { useTheme } from './helpers';
 
 // @ts-ignore
 import { parse } from './grammar.pegjs';
@@ -24,11 +24,11 @@ export default function colorize(options: ColorizeOptions = {
                     const parsed = parse(value);
 
                     return {
-                        [prop]: transform(parsed).hsl().toString()
+                        [prop]: transform(parsed).toString()
                     };
                 }
             }, {
-                
+                values: theme('colors.')
             })
         }
     }, {

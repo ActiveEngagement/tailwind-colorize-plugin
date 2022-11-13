@@ -10,8 +10,11 @@ Start
 Expression
     = Color MethodCall?
 
+Digit
+	= [0-9]
+
 Number
-    = decimal:"."? digits:([0-9]+) {
+    = decimal:"."? digits:(Digit+) {
         return new function LiteralValue() {
             this.id = 'LiteralValue';
             this.value = Number(join(decimal, ...digits))
@@ -20,28 +23,48 @@ Number
 
 String
     = value: [a-zA-Z0-9]+ { return value.join('') }
+    
+Letters
+    = value: ([a-zA-Z] String) { return value.join('') }
 
 HexChar
     = [0-9a-fA-F]
 
 Color
-    = ThemeColor/RgbFunction/LongHexCode/ShortHexCode/Number
+    = RgbFunction/HslFunction/ThemeColor/LongHexCode/ShortHexCode/Number
 
 ColorWeight
-    = value:("." String)
+    = "." value:String !'(' { return value }
 
 ThemeColor
-    = name:String weight:ColorWeight? {
+    = name:Letters weight:ColorWeight? {
         return new function ThemeColor() {
             this.id = 'ThemeColor';
             this.name = name;
-            this.weight = weight && weight.pop();
+            this.weight = weight;
         };
     }
 
+RgbValue
+    = value: (Digit Digit? Digit?) { return join(value) }
+
 RgbFunction
-    = value:('rgb(' [0-9]+ ',' [0-9]+ ',' [0-9] ')') {
-        return value.join('')
+    = value:('rgb(' RgbValue ',' RgbValue ',' RgbValue ')') {
+        return new function RgbFunction() {
+            this.id = 'RgbFunction';
+            this.code = join(...value)
+        }
+    }
+
+HslValue
+    = value:([.]? [0-9.]+ '%'?) { return join(...value) }
+
+HslFunction
+    = value:('hsl(' HslValue "," HslValue "," HslValue ')') {
+        return new function HslFunction() {
+            this.id = 'HslFunction';
+            this.code = join(...value)
+        }
     }
 
 LongHexCode
@@ -68,7 +91,13 @@ Function
         return new function MethodCall() {
             this.id = 'MethodCall';
             this.name = name;
-            this.args = args.map(([comma, arg]) => arg);
+            this.args = args.map(([comma, [subject, calls]]) => {
+                if(calls.length) {
+                    return [subject, calls];
+                }
+
+                return subject;
+            });
         }
     }
 

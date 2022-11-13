@@ -2,15 +2,18 @@
 
 ![test](./assets/banner.png)
 
-I ❤️ Tailwind, but I loathe when I have to create new colors and weight variations. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, and potentially editing the config to save the color, and repeating the process until it is correct.
+I ❤️ Tailwind, but I loathe when I have to create new colors and color variations. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating the process until it is correct. The goal is manipulate colors syntaxically in a similar way we already use colors in Tailwind.
 
-### Project Goals
+### Project Requirements
 
-- Expressive, fluent, and chainable syntax that is easy to remember.
+- Expressive, fluent, and chainable syntax that is easy to read and remember.
 - Flexible and customizable to work for as many situations as possible.
-- Make use of Tailwind theme colors and arbitrary colors in various formats, such as `hex`, `hsl`, and `rgb`.
+- Must support all Tailwind colors and CSS colors, such as `hex`, `hsl`, and `rgb`.
 - Make use of [color](https://www.npmjs.com/package/color) to manipulate the actual colors.
 - Make use of [peggy](https://peggyjs.org/) to parse the expressions.
+- Must work with Tailwind Intellisense for a quality developer experience.
+- Full unit test coverage with Jest.
+- Stability. No breaking changes whenever possible.
 
 ### A Little Background 
 
@@ -93,9 +96,9 @@ color.green(100).grayscale().lighten(0.6)
 
 ## Syntax
 
-The plugin uses a PEG parser to tokenize the expression in real time. The expression must start with a color and may include method chains that manipulate and return a new `Color` instance. A color may be a CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl` format. For a more detailed description of the lexical grammar, you may wish to refer to the definition file `grammar.pegjs`.
+A PEG parser is used to analyze and tokenize the expression in real time. The expression must start with a color and may include methods chained together that will return a new `Color` instance. A color may be a CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl` format. For a more detailed description of the grammar, you may wish to refer to the definition file `grammar.pegjs`.
 
-*The syntax is sensitive to whitespace. DO NOT use any spaces.*
+*Due to the way CSS and Tailwind is parsed, the syntax is intentionally sensitive to whitespace. Opposite of Python, DO NOT use any spaces!*
 
 ### Color Syntax
 
@@ -115,7 +118,7 @@ coral
 
 // Color Functions
 rgb(225,0,0)
-hsl(0,84.2,60.2)
+hsl(0,84.2%,60.2%)
 
 // Hex Codes
 #eee
