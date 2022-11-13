@@ -6,7 +6,7 @@
 ![Github Issues](https://img.shields.io/github/issues/ActiveEngagement/tailwind-colorize-plugin?logo=Github)
 ![MIT License](https://img.shields.io/github/license/ActiveEngagement/tailwind-colorize-plugin)
 
-I ❤️ Tailwind, but I loathe when I have to create new colors and color variations. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating the process until it is correct. The goal is manipulate colors syntaxically in a similar way we already use colors in Tailwind.
+I ❤️ Tailwind and it has completely revolutionized the way we write CSS. But one thing I loathe is when I have to create new colors and color variations and leave code I am writing. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating the process until it is correct. The goal is to be able to manipulate colors syntaxically in a same way we already use colors in Tailwind, but with slight modifications.
 
 ### Project Requirements
 
@@ -23,9 +23,11 @@ I ❤️ Tailwind, but I loathe when I have to create new colors and color varia
 
 I built this plugin because I found myself running out colors, or not having enough subtlety between the color variations, especially when adding dark mode support to applications. The tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on any of on the standard colors is pretty large.
 
-Let's take a button for example which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to define anything in the config, let alone take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
+Let's take a button which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but difference between the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to define anything in the config, let alone take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
 
-### Installation
+Let me introduce you to Tailwind Colorize...
+
+## Installation
 
 #### NPM
 ```bash
@@ -51,22 +53,76 @@ module.exports = {
 }
 ```
 
-### Basic Examples
+## Getting Started
 
-```html
-<!-- Darken the "red.500" color 10%. -->
-<div class="bg-colorize-[red.500.darken(.1)] w-12 h-12 rounded"></div>
+Your themes are one of the definition characters of your app. However, there are times you may just want to make slight adjustments, like wanting `slate.850` or `slate.825` without having to figure out what that value is. Or even, a blend of two color.
 
-<!-- Mix the "slate.800" color with "slate.900" at 25% rate to get a calculate "slate.825". -->
-<div class="text-colorize-[slate.800.mix(slate.900,.25)] w-12 h-12 rounded"></div>
+Tailwind Colorize doesn't take much to get start. It will parse your theme automatically. Not worry, anything that you have defined will stay the same unless it is a valid "colorized" syntax, in which is it be parsed and the returned color will be used. All the core Tailwind plugins are supported out of the box.
 
-<!-- Mix the "slate.800" color equally with "slate.900" that has been darkened 25%. -->
-<div class="border-colorize-[slate.800.mix(slate.900.darken(.25))] w-12 h-12 rounded"></div>
+*Tip, if you want custom plugins to take advanvantage of Colorize, then be sure to include `colorize()` as the top of the `plugins: []` in the `tailwind.config.js` to it is installed first.*
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './index.html'
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'water': {
+          'lighter': 'sky.500.lighten(.50)',
+          'light': 'sky.500.lighten(.25)',
+          DEFAULT: 'sky.500',
+          'dark': 'sky.500.darken(.25)',
+          'darker': 'sky.500.darken(.50)',
+        }
+      }
+    },
+  }
+}
 ```
 
-## Available Color Methods
+```html
+<div class="bg-water-lighter w-24 h-24 rounded-lg"></div>
+<div class="bg-water-light w-24 h-24 rounded-lg"></div>
+<div class="bg-water w-24 h-24 rounded-lg"></div>
+<div class="bg-water-dark w-24 h-24 rounded-lg"></div>
+<div class="bg-water-darker w-24 h-24 rounded-lg"></div>
+```
 
-This plugin uses [color](https://www.npmjs.com/package/color) under the hood to process the actual color manipulations. The parser will analyze the syntax and expose an API that is very similar to the JS syntax.
+![Water Color Example](./assets/water-colors.png)
+
+### Arbitrary Color Values
+
+Due to a core plugin limitation in Tailwind CSS, you can't defined arbitrary colors values directly in your html. For example, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
+
+```html
+<div class="bgx-[[red.500.mix(yellow.100,.1)]] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.2)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.3)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.4)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.5)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.6)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.7)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.8)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,.9)] w-24 h-24 rounded-lg"></div>
+<div class="bgx-[red.500.mix(yellow.100,1)] w-24 h-24 rounded-lg"></div>
+```
+
+And you can use the same syntax if you want to define styles inside your CSS manually.
+
+```css
+.bg-water {
+    @apply bgx-[sky.500.whiten(.1)]
+}
+```
+
+![Water Color Example](./assets/arbitrary-colors.png)
+
+## Available Methods
+
+This plugin uses [color](https://www.npmjs.com/package/color) under the hood to process the actual color manipulations. The parser will analyze the syntax and expose a API that should feel very similar to the JS.
 
 ```js
 color.negate()  // rgb(0, 100, 255) -> rgb(255, 155, 0)

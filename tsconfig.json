@@ -16,5 +16,5 @@
     "noImplicitReturns": true,
     "skipLibCheck": true
   },
-  "include": ["src", "src/index.tsx.tssrc/index.tsindex.ts", "src/main.tsn.tssrc/main.ts/main.ts"]
+  "include": ["lib", "lib/index.tsx.tssrc/index.tsindex.ts", "lib/main.tsn.tssrc/main.ts/main.ts", "index.js", "index.js"]
 }

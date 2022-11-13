@@ -1,6 +1,6 @@
 import { describe, expect,  test } from '@jest/globals';
 import resolveConfig from 'tailwindcss/resolveConfig';
-import { useTheme } from '../src/helpers';
+import { useTheme } from '../lib/useTheme';
 import tailwindConfig from '../tailwind.config.js'
 import { parse as base } from '../grammar';
 
