@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1668297962980" clover="3.2.0">
-  <project timestamp="1668297962980" name="All files">
+<coverage generated="1668299424491" clover="3.2.0">
+  <project timestamp="1668299424491" name="All files">
     <metrics statements="1285" coveredstatements="1191" conditionals="291" coveredconditionals="282" methods="82" coveredmethods="68" elements="1658" coveredelements="1541" complexity="0" loc="1285" ncloc="1285" packages="2" files="3" classes="3"/>
     <package name="tailwind-colorize-plugin">
       <metrics statements="1230" coveredstatements="1136" conditionals="273" coveredconditionals="264" methods="77" coveredmethods="63"/>
