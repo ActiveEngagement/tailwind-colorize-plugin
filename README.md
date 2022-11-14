@@ -472,16 +472,16 @@ mix(color: Color, value?: number)
 ```js
 colors: {
     reddish: {
-        DEFAULT: 'red.500.rotate(0)',
-        20: 'red.500.rotate(20)',
-        40: 'red.500.rotate(40)',
-        60: 'red.500.rotate(60)',
-        80: 'red.500.rotate(80)',
-        100: 'red.500.rotate(100)',
-        120: 'red.500.rotate(120)',
-        140: 'red.500.rotate(140)',
-        160: 'red.500.rotate(160)',
-        180: 'red.500.rotate(180)'
+        100: 'red.500.mix(yellow.100,.1)',
+        200: 'red.500.mix(yellow.100,.2)',
+        300: 'red.500.mix(yellow.100,.3)',
+        400: 'red.500.mix(yellow.100,.4)',
+        500: 'red.500.mix(yellow.100,.5)',
+        600: 'red.500.mix(yellow.100,.6)',
+        700: 'red.500.mix(yellow.100,.7)',
+        800: 'red.500.mix(yellow.100,.8)',
+        900: 'red.500.mix(yellow.100,.9)',
+        DEFAULT: 'red.500.mix(yellow.100,1)'
     }
 }
 ```
@@ -500,7 +500,7 @@ negate()
 
 ```js
 colors: {
-    tealish: {
+    reddish: {
         50: 'red.50.negate(0)',
         100: 'red.500.negate()',
         200: 'red.500.negate()',
