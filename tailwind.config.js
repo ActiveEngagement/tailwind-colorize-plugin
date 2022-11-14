@@ -1,4 +1,4 @@
-const colorize = require('./index.js');
+const { colorize } = require('./index.js');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -17,8 +17,5 @@ module.exports = {
         }
       }
     },
-  },
-  plugins: [
-    colorize()
-  ],
+  }
 }

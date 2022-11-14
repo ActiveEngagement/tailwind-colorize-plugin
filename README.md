@@ -25,7 +25,8 @@ I want to be able to manipulate colors syntaxically in a same way we already use
   - [Installation](#installation)
       - [NPM](#npm)
       - [Yarn](#yarn)
-      - [Tailwind Config](#tailwind-config)
+      - [PostCSS](#postcss)
+      - [A Note About PostCSS](#a-note-about-postcss)
       - [Plugin Options](#plugin-options)
   - [Getting Started](#getting-started)
     - [Arbitrary Color Values](#arbitrary-color-values)
@@ -79,22 +80,38 @@ npm i tailwind-colorize-plugin
 yarn add tailwind-colorize-plugin
 ```
 
-#### Tailwind Config
+#### PostCSS
+
+To install the plugin, you must be sure to require it inside the `postcss.config.js` after Tailwind CSS.
+
 ```js
-// tailwind.config.js
+// postcss.config.js
 const colorize = require('tailwind-colorize-plugin');
 
 module.exports = {
     plugins: [
-        colorize()
+        require('tailwindcss'),
+        require('tailwind-colorize-plugin'),
+        require('autoprefixer')
     ]
 }
 ```
 
+#### A Note About PostCSS
+
+Currently this plugin must be installed as a PostCSS plugin. We would be preferred to ship this as a Tailwind CSS plugin, but we haven't been able to find a way to make the parsing work properly without serious hacks. So the easiest solution was to just resolve the Tailwind CSS config and use PostCSS to parse the values.
+
+If you know a cleaner way to parse the data, create an issue and let us know!
+
 #### Plugin Options
-```js
+```ts
 {
-    // Currently the plugin has no options, but it could in the future!
+    // Pass a resolved config object directly.
+    config: ThemeConfig 
+
+    // If no config object, the plugin will resolve the 
+    // config using a path. Default: 'tailwind.config.js'
+    configPath: string 
 }
 ```
 
@@ -140,7 +157,6 @@ module.exports = {
 
 ### Arbitrary Color Values
 
-Due to a core plugin limitation in Tailwind CSS, you can't define arbitrary color values directly in your html using `bg-`. However, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
 
 ```html
 <div class="bgx-[[red.500.mix(yellow.100,.1)]] w-24 h-24 rounded-lg"></div>
@@ -340,8 +356,6 @@ colors: {
 ```
 
 ![Fade Color Example](./assets/fade-colors.png)
-
----
 
 ---
 

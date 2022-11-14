@@ -1,34 +1,36 @@
-const plugin = require('tailwindcss/plugin');
-const {default:flattenColorPalette} = require('tailwindcss/lib/util/flattenColorPalette');
-const {default:toColorValue} = require('tailwindcss/lib/util/toColorValue');
-const {default:withAlphaVariable} = require('tailwindcss/lib/util/withAlphaVariable');
 
+const resolveConfig = require('tailwindcss/resolveConfig');
 const { parse } = require('./grammar');
 const useTheme = require('./lib/useTheme');
-const useCorePlugins = require('./lib/useCorePlugins');
 
-const defaultOptions = {
-    key: 'colorize',
-};
-
-module.exports = plugin.withOptions((options = {}) => {
-    Object.assign(options, defaultOptions, options);
-
-    return (context) => {
-        // If there is a better way to do this, please let me know. The
-        // reason this is here is because the core plugins are defined before
-        // the plugins, so any changes to the theme will mean the utilities
-        // will have to be reinstantiated.
-        useCorePlugins(context);
+module.exports = (opts = {
+    config: undefined,
+    configPath: './tailwind.config.js'
+}) => {
+    // Convert opts to an object if passed as a string. Assume the string is the
+    // tailwindcss config path.
+    if(typeof opts === 'string') {
+        opts = {
+            config: opts
+        }
     }
-}, (options = {}) => {
-    Object.assign(options, defaultOptions, options);
 
+    // Resolve the tailwind config.
+    const tailwindConfig = opts.config || resolveConfig(require(opts.configPath));
+
+    // Resolve the config and run useTheme() to get the instance.
+    const { transform } = useTheme(resolveConfig(tailwindConfig));
+
+    // Define the PostCSS plugin to parse the Decl values.
     return {
-        theme: {
-            [options.key]: {
-                // Define an empty object
+        postcssPlugin: 'tailwind-colorize-plugin',
+        Declaration(decl) {
+            try {
+                decl.value = transform(parse(decl.value)).rgb().toString();
+            }
+            catch {
+                // If there is an error, just ignore the declaration.
             }
         }
     }
-});
+}
