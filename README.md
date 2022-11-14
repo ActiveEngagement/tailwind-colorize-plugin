@@ -10,7 +10,7 @@
 
 🟥 🟧 🟨 🟩 🟦 
 
-*The fluent and expressive way to manipulate colors in Tailind CSS.*
+*The fluent and expressive way to manipulate colors in Tailwind CSS.*
 
 I ❤️ Tailwind. But one thing I loathe is when I have to create new colors and color variations, resulting in leaving the code I am writing. It usually starts by opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating this totally arbitrary process until it "feels" correct. 
 
@@ -61,7 +61,7 @@ I want to be able to manipulate colors syntaxically in a same way we already use
 
 ### A Little Background 
 
-I built this plugin because I found myself running out colors, or not having enough subtlety between the color variations, especially when adding dark mode support to applications. The tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on any of on the standard colors is pretty large.
+I built this plugin because I found myself running out of colors, or not having enough subtlety between the color variations, especially when adding dark mode support to applications. The tonal difference between `slate` and `zinc` is the difference between `blue` and `brown` when it comes to consistently gradiated applications. In addition, the difference between `800` and `900` on any of on the standard colors is pretty large.
 
 Let's take a button which has the attribute `class="rounded p-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700"`. Three different colors to represent each state, but difference between the active state and hover state are a bit too stark for my taste. What I really want is the ability to do something like `bg-blue-650` or `bg-blue-625` without having to take time to figure what those values would be for each instance. And I especially don't want to use a color picker application of any kind, but rather have consistent mathematical derivitives of the colors inline with those defined in the theme.
 
