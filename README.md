@@ -1,4 +1,4 @@
-# Tailwind Colorize 🟥 🟧 🟨 🟩 🟦 
+# Tailwind Colorize 
 
 ![Colorize Banner](./assets/banner.png)
 
@@ -8,13 +8,47 @@
 ![Github Issues](https://img.shields.io/github/issues/ActiveEngagement/tailwind-colorize-plugin?logo=Github)
 ![MIT License](https://img.shields.io/github/license/ActiveEngagement/tailwind-colorize-plugin)
 
+🟥 🟧 🟨 🟩 🟦 
+
 *The fluent and expressive way to manipulate colors in Tailind CSS.*
 
 I ❤️ Tailwind. But one thing I loathe is when I have to create new colors and color variations, resulting in leaving the code I am writing. It usually starts by opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating this totally arbitrary process until it "feels" correct. 
 
 I want to be able to manipulate colors syntaxically in a same way we already use colors in Tailwind, but with optional opt-in enhancements.
 
-### Project Requirements
+## Table of Contents
+
+- [Tailwind Colorize](#tailwind-colorize)
+  - [Table of Contents](#table-of-contents)
+  - [Project Spec](#project-spec)
+    - [A Little Background](#a-little-background)
+  - [Installation](#installation)
+      - [NPM](#npm)
+      - [Yarn](#yarn)
+      - [Tailwind Config](#tailwind-config)
+      - [Plugin Options](#plugin-options)
+  - [Getting Started](#getting-started)
+    - [Arbitrary Color Values](#arbitrary-color-values)
+    - [Arbitrary Values using CSS](#arbitrary-values-using-css)
+  - [Available Methods](#available-methods)
+    - [Lighten](#lighten)
+    - [Darken](#darken)
+    - [Lightness](#lightness)
+    - [Whiten](#whiten)
+    - [Blacken](#blacken)
+    - [Fade](#fade)
+    - [Saturate](#saturate)
+    - [Desaturate](#desaturate)
+    - [Rotate](#rotate)
+    - [Grayscale](#grayscale)
+    - [Mix](#mix)
+    - [Negate](#negate)
+  - [PEG Parser](#peg-parser)
+    - [A note about whitespace... 🐍](#a-note-about-whitespace-)
+  - [Color Syntax](#color-syntax)
+  - [Method Chaining](#method-chaining)
+
+## Project Spec
 
 - Expressive, fluent, and chainable syntax that is easy to read and remember.
 - Flexible and customizable to work for as many situations as possible.
@@ -137,42 +171,13 @@ And you can use the same syntax if you want to define styles inside your CSS man
 
 This plugin uses [color](https://www.npmjs.com/package/color) under the hood to process the actual color manipulations. The parser will analyze the syntax and expose a API that should feel very similar to the JS.
 
-### Fade
-
-```ts
-fade(value: number)
-```
-
-### Example
-
-```js
-colors: {
-    reddish: {
-        DEFAULT: 'red.500.fade(0)',
-        100: 'red.500.fade(.1)',
-        200: 'red.500.fade(.2)',
-        300: 'red.500.fade(.3)',
-        400: 'red.500.fade(.4)',
-        500: 'red.500.fade(.5)',
-        600: 'red.500.fade(.6)',
-        700: 'red.500.fade(.7)',
-        800: 'red.500.fade(.8)',
-        900: 'red.500.fade(.9)',
-    }
-}
-```
-
-![Fade Color Example](./assets/fade-colors.png)
-
----
-
 ### Lighten
 
 ```ts
 lighten(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -201,7 +206,7 @@ colors: {
 darken(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -230,7 +235,7 @@ colors: {
 lightness(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -259,7 +264,7 @@ colors: {
 whiten(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -288,7 +293,7 @@ colors: {
 blacken(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -309,6 +314,35 @@ colors: {
 
 ![Blacken Color Example](./assets/blacken-colors.png)
 
+### Fade
+
+```ts
+fade(value: number)
+```
+
+**Example**
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.fade(0)',
+        100: 'red.500.fade(.1)',
+        200: 'red.500.fade(.2)',
+        300: 'red.500.fade(.3)',
+        400: 'red.500.fade(.4)',
+        500: 'red.500.fade(.5)',
+        600: 'red.500.fade(.6)',
+        700: 'red.500.fade(.7)',
+        800: 'red.500.fade(.8)',
+        900: 'red.500.fade(.9)',
+    }
+}
+```
+
+![Fade Color Example](./assets/fade-colors.png)
+
+---
+
 ---
 
 ### Saturate
@@ -317,7 +351,7 @@ colors: {
 Saturate(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -346,7 +380,7 @@ colors: {
 desaturate(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -375,7 +409,7 @@ colors: {
 rotate(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -404,7 +438,7 @@ colors: {
 grayscale(value: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -433,7 +467,7 @@ colors: {
 mix(color: Color, value?: number)
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -462,7 +496,7 @@ colors: {
 negate()
 ```
 
-### Example
+**Example**
 
 ```js
 colors: {
@@ -484,7 +518,7 @@ colors: {
 ![Mix Color Example](./assets/negate-colors.png)
 
 
-## Syntax
+## PEG Parser
 
 A PEG parser is used to analyze and tokenize the expression in real time. The parser is incredibly fast and efficient. 
 
