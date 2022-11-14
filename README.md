@@ -104,7 +104,7 @@ Your theme colors are one of the defining characteristics of your app. However, 
 
 Tailwind Colorize doesn't take much to get start. It will parse your theme automatically. Not worry, anything that you have defined will stay the same unless it is a valid "colorized" syntax, in which is it be parsed and the returned color will be used. All the core Tailwind plugins are supported out of the box.
 
-*Tip, if you want custom plugins to take advanvantage of Colorize, then be sure to include `colorize()` as the top of the `plugins: []` in the `tailwind.config.js` to it is installed first.*
+*Tip, if you want custom plugins to take advanvantage of Colorize, then be sure to include `colorize()` at the top of the `plugins: []` in the `tailwind.config.js` config file.*
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -140,7 +140,7 @@ module.exports = {
 
 ### Arbitrary Color Values
 
-Due to a core plugin limitation in Tailwind CSS, you can't defined arbitrary colors values directly in your html using `bg-`. However, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
+Due to a core plugin limitation in Tailwind CSS, you can't define arbitrary color values directly in your html using `bg-`. However, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
 
 ```html
 <div class="bgx-[[red.500.mix(yellow.100,.1)]] w-24 h-24 rounded-lg"></div>
