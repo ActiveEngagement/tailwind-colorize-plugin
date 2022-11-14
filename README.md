@@ -447,7 +447,7 @@ colors: {
 }
 ```
 
-![Mix Color Example](./assets/Mix-colors.png)
+![Mix Color Example](./assets/mix-colors.png)
 
 ---
 
@@ -476,7 +476,7 @@ colors: {
 }
 ```
 
-![Mix Color Example](./assets/Mix-colors.png)
+![Mix Color Example](./assets/negate-colors.png)
 
 
 ## Syntax
