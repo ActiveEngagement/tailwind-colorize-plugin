@@ -52,10 +52,15 @@ const colorize = require('tailwind-colorize-plugin');
 
 module.exports = {
     plugins: [
-        colorize({
-            // @todo: Document plugin options here
-        })
+        colorize()
     ]
+}
+```
+
+#### Plugin Options
+```js
+{
+    // Currently the plugin has no options, but it could in the future!
 }
 ```
 

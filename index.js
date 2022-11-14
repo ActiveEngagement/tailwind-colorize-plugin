@@ -9,12 +9,6 @@ const useCorePlugins = require('./lib/useCorePlugins');
 
 const defaultOptions = {
     key: 'colorize',
-    parseTheme: true,
-    props: [{
-        selector: 'bg',
-        property: 'background',
-        themeKey: 'backgroundColor'
-    }]
 };
 
 module.exports = plugin.withOptions((options = {}) => {
