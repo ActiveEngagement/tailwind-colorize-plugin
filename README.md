@@ -1,4 +1,4 @@
-# Tailwind Color Plugin 🟥 🟧 🟨 🟩 🟦 
+# Tailwind Colorize 🟥 🟧 🟨 🟩 🟦 
 
 ![Colorize Banner](./assets/banner.png)
 
@@ -8,7 +8,11 @@
 ![Github Issues](https://img.shields.io/github/issues/ActiveEngagement/tailwind-colorize-plugin?logo=Github)
 ![MIT License](https://img.shields.io/github/license/ActiveEngagement/tailwind-colorize-plugin)
 
-I ❤️ Tailwind and it has completely revolutionized the way we write CSS. But one thing I loathe is when I have to create new colors and color variations and leave code I am writing. It usually involves opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating the process until it is correct. The goal is to be able to manipulate colors syntaxically in a same way we already use colors in Tailwind, but with slight modifications.
+*The fluent and expressive way to manipulate colors in Tailind CSS.*
+
+I ❤️ Tailwind. But one thing I loathe is when I have to create new colors and color variations, resulting in leaving the code I am writing. It usually starts by opening some color app, picking the color, adjusting the hue or shade in some minute way, editing the config to save the color, and repeating this totally arbitrary process until it "feels" correct. 
+
+I want to be able to manipulate colors syntaxically in a same way we already use colors in Tailwind, but with optional opt-in enhancements.
 
 ### Project Requirements
 
@@ -17,9 +21,9 @@ I ❤️ Tailwind and it has completely revolutionized the way we write CSS. But
 - Must support all Tailwind colors and CSS colors, such as `hex`, `hsl`, and `rgb`.
 - Make use of [color](https://www.npmjs.com/package/color) to manipulate the actual colors.
 - Make use of [peggy](https://peggyjs.org/) to parse the expressions.
-- Must work with Tailwind Intellisense for a quality developer experience.
-- Full unit test coverage with Jest.
+- Must work with Tailwind Intellisense.
 - Stability. No breaking changes whenever possible.
+- Unit test coverage with Jest.
 
 ### A Little Background 
 
@@ -57,7 +61,7 @@ module.exports = {
 
 ## Getting Started
 
-Your themes are one of the defining characteristics of your app. However, there are times you may just want to make slight adjustments, like wanting `slate.850` or `slate.825` without having to figure out what that value is. Or even, a blend of two color.
+Your theme colors are one of the defining characteristics of your app. However, there are times you may just want to make slight adjustments, like wanting `slate.850` or `slate.825` without having to figure out what that value is. Or even, a blend of two color.
 
 Tailwind Colorize doesn't take much to get start. It will parse your theme automatically. Not worry, anything that you have defined will stay the same unless it is a valid "colorized" syntax, in which is it be parsed and the returned color will be used. All the core Tailwind plugins are supported out of the box.
 
@@ -97,7 +101,7 @@ module.exports = {
 
 ### Arbitrary Color Values
 
-Due to a core plugin limitation in Tailwind CSS, you can't defined arbitrary colors values directly in your html. For example, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
+Due to a core plugin limitation in Tailwind CSS, you can't defined arbitrary colors values directly in your html using `bg-`. However, Colorize allows you to do this using the `bgx` alternative to `bg`. You may use this same format with any property.
 
 ```html
 <div class="bgx-[[red.500.mix(yellow.100,.1)]] w-24 h-24 rounded-lg"></div>
@@ -112,6 +116,10 @@ Due to a core plugin limitation in Tailwind CSS, you can't defined arbitrary col
 <div class="bgx-[red.500.mix(yellow.100,1)] w-24 h-24 rounded-lg"></div>
 ```
 
+![Water Color Example](./assets/arbitrary-colors.png)
+
+### Arbitrary Values using CSS
+
 And you can use the same syntax if you want to define styles inside your CSS manually.
 
 ```css
@@ -120,49 +128,374 @@ And you can use the same syntax if you want to define styles inside your CSS man
 }
 ```
 
-![Water Color Example](./assets/arbitrary-colors.png)
-
 ## Available Methods
 
 This plugin uses [color](https://www.npmjs.com/package/color) under the hood to process the actual color manipulations. The parser will analyze the syntax and expose a API that should feel very similar to the JS.
 
-```js
-color.negate()  // rgb(0, 100, 255) -> rgb(255, 155, 0)
+### Fade
 
-color.lighten(0.5)  // hsl(100, 50%, 50%) -> hsl(100, 50%, 75%)
-color.lighten(0.5)  // hsl(100, 50%, 0)   -> hsl(100, 50%, 0)
-color.darken(0.5)   // hsl(100, 50%, 50%) -> hsl(100, 50%, 25%)
-color.darken(0.5)   // hsl(100, 50%, 0)   -> hsl(100, 50%, 0)
-
-color.lightness(50)  // hsl(100, 50%, 10%) -> hsl(100, 50%, 50%)
-
-color.saturate(0.5)    // hsl(100, 50%, 50%) -> hsl(100, 75%, 50%)
-color.desaturate(0.5)  // hsl(100, 50%, 50%) -> hsl(100, 25%, 50%)
-color.grayscale()      // #5CBF54 -> #969696
-
-color.whiten(0.5)   // hwb(100, 50%, 50%) -> hwb(100, 75%, 50%)
-color.blacken(0.5)  // hwb(100, 50%, 50%) -> hwb(100, 50%, 75%)
-
-color.fade(0.5)     // rgba(10, 10, 10, 0.8) -> rgba(10, 10, 10, 0.4)
-color.opaquer(0.5)  // rgba(10, 10, 10, 0.8) -> rgba(10, 10, 10, 1.0)
-
-color.rotate(180)  // hsl(60, 20%, 20%) -> hsl(240, 20%, 20%)
-color.rotate(-90)  // hsl(60, 20%, 20%) -> hsl(330, 20%, 20%)
-
-color.mix(Color("yellow"))        // cyan -> rgb(128, 255, 128)
-color.mix(Color("yellow"), 0.3)   // cyan -> rgb(77, 255, 179)
-
-// chaining
-color.green(100).grayscale().lighten(0.6)
+```ts
+fade(value: number)
 ```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.fade(0)',
+        100: 'red.500.fade(.1)',
+        200: 'red.500.fade(.2)',
+        300: 'red.500.fade(.3)',
+        400: 'red.500.fade(.4)',
+        500: 'red.500.fade(.5)',
+        600: 'red.500.fade(.6)',
+        700: 'red.500.fade(.7)',
+        800: 'red.500.fade(.8)',
+        900: 'red.500.fade(.9)',
+    }
+}
+```
+
+![Fade Color Example](./assets/fade-colors.png)
+
+---
+
+### Lighten
+
+```ts
+lighten(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.lighten(0)',
+        100: 'red.500.lighten(.1)',
+        200: 'red.500.lighten(.2)',
+        300: 'red.500.lighten(.3)',
+        400: 'red.500.lighten(.4)',
+        500: 'red.500.lighten(.5)',
+        600: 'red.500.lighten(.6)',
+        700: 'red.500.lighten(.7)',
+        800: 'red.500.lighten(.8)',
+        900: 'red.500.lighten(.9)',
+    }
+}
+```
+
+![Lighten Color Example](./assets/lighten-colors.png)
+
+---
+
+### Darken
+
+```ts
+darken(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.darken(0)',
+        100: 'red.500.darken(.1)',
+        200: 'red.500.darken(.2)',
+        300: 'red.500.darken(.3)',
+        400: 'red.500.darken(.4)',
+        500: 'red.500.darken(.5)',
+        600: 'red.500.darken(.6)',
+        700: 'red.500.darken(.7)',
+        800: 'red.500.darken(.8)',
+        900: 'red.500.darken(.9)',
+    }
+}
+```
+
+![Darken Color Example](./assets/darken-colors.png)
+
+---
+
+### Lightness
+
+```ts
+lightness(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.darken(0)',
+        100: 'red.500.lightness(10)',
+        200: 'red.500.lightness(20)',
+        300: 'red.500.lightness(30)',
+        400: 'red.500.lightness(40)',
+        500: 'red.500.lightness(50)',
+        600: 'red.500.lightness(60)',
+        700: 'red.500.lightness(70)',
+        800: 'red.500.lightness(80)',
+        900: 'red.500.lightness(90)',
+    }
+}
+```
+
+![Lightness Color Example](./assets/lightness-colors.png)
+
+---
+
+### Whiten
+
+```ts
+whiten(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.whiten(0)',
+        100: 'red.500.whiten(.1)',
+        200: 'red.500.whiten(.2)',
+        300: 'red.500.whiten(.3)',
+        400: 'red.500.whiten(.4)',
+        500: 'red.500.whiten(.5)',
+        600: 'red.500.whiten(.6)',
+        700: 'red.500.whiten(.7)',
+        800: 'red.500.whiten(.8)',
+        900: 'red.500.whiten(.9)',
+    }
+}
+```
+
+![Whiten Color Example](./assets/whiten-colors.png)
+
+---
+
+### Blacken
+
+```ts
+blacken(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.blacken(0)',
+        100: 'red.500.blacken(.1)',
+        200: 'red.500.blacken(.2)',
+        300: 'red.500.blacken(.3)',
+        400: 'red.500.blacken(.4)',
+        500: 'red.500.blacken(.5)',
+        600: 'red.500.blacken(.6)',
+        700: 'red.500.blacken(.7)',
+        800: 'red.500.blacken(.8)',
+        900: 'red.500.blacken(.9)',
+    }
+}
+```
+
+![Blacken Color Example](./assets/blacken-colors.png)
+
+---
+
+### Saturate
+
+```ts
+Saturate(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.saturate(0)',
+        100: 'red.500.saturate(.1)',
+        200: 'red.500.saturate(.2)',
+        300: 'red.500.saturate(.3)',
+        400: 'red.500.saturate(.4)',
+        500: 'red.500.saturate(.5)',
+        600: 'red.500.saturate(.6)',
+        700: 'red.500.saturate(.7)',
+        800: 'red.500.saturate(.8)',
+        900: 'red.500.saturate(.9)',
+    }
+}
+```
+
+![Saturate Color Example](./assets/saturate-colors.png)
+
+---
+
+### Desaturate
+
+```ts
+desaturate(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.desaturate(0)',
+        100: 'red.500.desaturate(.1)',
+        200: 'red.500.desaturate(.2)',
+        300: 'red.500.desaturate(.3)',
+        400: 'red.500.desaturate(.4)',
+        500: 'red.500.desaturate(.5)',
+        600: 'red.500.desaturate(.6)',
+        700: 'red.500.desaturate(.7)',
+        800: 'red.500.desaturate(.8)',
+        900: 'red.500.desaturate(.9)',
+    }
+}
+```
+
+![Desaturate Color Example](./assets/desaturate-colors.png)
+
+---
+
+### Rotate
+
+```ts
+rotate(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.rotate(0)',
+        20: 'red.500.rotate(20)',
+        40: 'red.500.rotate(40)',
+        60: 'red.500.rotate(60)',
+        80: 'red.500.rotate(80)',
+        100: 'red.500.rotate(100)',
+        120: 'red.500.rotate(120)',
+        140: 'red.500.rotate(140)',
+        160: 'red.500.rotate(160)',
+        180: 'red.500.rotate(180)'
+    }
+}
+```
+
+![Rotate Color Example](./assets/rotate-colors.png)
+
+---
+
+### Grayscale
+
+```ts
+grayscale(value: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.grayscale(0)',
+        100: 'red.500.grayscale(20)',
+        200: 'red.500.grayscale(40)',
+        300: 'red.500.grayscale(60)',
+        400: 'red.500.grayscale(80)',
+        500: 'red.500.grayscale(100)',
+        600: 'red.500.grayscale(120)',
+        700: 'red.500.grayscale(140)',
+        800: 'red.500.grayscale(160)',
+        900: 'red.500.grayscale(180)'
+    }
+}
+```
+
+![Grayscale Color Example](./assets/grayscale-colors.png)
+
+---
+
+### Mix
+
+```ts
+mix(color: Color, value?: number)
+```
+
+### Example
+
+```js
+colors: {
+    reddish: {
+        DEFAULT: 'red.500.rotate(0)',
+        20: 'red.500.rotate(20)',
+        40: 'red.500.rotate(40)',
+        60: 'red.500.rotate(60)',
+        80: 'red.500.rotate(80)',
+        100: 'red.500.rotate(100)',
+        120: 'red.500.rotate(120)',
+        140: 'red.500.rotate(140)',
+        160: 'red.500.rotate(160)',
+        180: 'red.500.rotate(180)'
+    }
+}
+```
+
+![Mix Color Example](./assets/Mix-colors.png)
+
+---
+
+### Negate
+
+```ts
+negate()
+```
+
+### Example
+
+```js
+colors: {
+    tealish: {
+        50: 'red.50.negate(0)',
+        100: 'red.500.negate()',
+        200: 'red.500.negate()',
+        300: 'red.500.negate()',
+        400: 'red.500.negate()',
+        500: 'red.500.negate()',
+        600: 'red.500.negate()',
+        700: 'red.500.negate()',
+        800: 'red.500.negate()',
+        900: 'red.500.negate()'
+    }
+}
+```
+
+![Mix Color Example](./assets/Mix-colors.png)
+
 
 ## Syntax
 
-A PEG parser is used to analyze and tokenize the expression in real time. The expression must start with a color and may include methods chained together that will return a new `Color` instance. A color may be a CSS color name, a Tailwind theme color, `hex`, `rgb`, or `hsl` format. For a more detailed description of the grammar, you may wish to refer to the definition file `grammar.pegjs`.
+A PEG parser is used to analyze and tokenize the expression in real time. The parser is incredibly fast and efficient. 
 
-*Due to the way CSS and Tailwind is parsed, the syntax is intentionally sensitive to whitespace. Opposite of Python, DO NOT use any spaces!*
+An expression must start with a color and may include methods chained together that will return a new `Color` instance. A color must be in the following format: theme color (without or without a weight), CSS color name, `hex`, `rgb`, or `hsl`. For a more detailed description of the grammar, you may wish to refer to the definition file `grammar.pegjs`.
 
-### Color Syntax
+### A note about whitespace... 🐍
+
+Much like Python, whitespace is not ignored by the grammar. This is intentional. Due to the way CSS and Tailwind attributes are parsed, the syntax is intentionally sensitive to whitespace. It may be possible this limitation can be removed in the future, but for now whitespace will trigger a parsing error.
+
+**Valid** \
+`red.500.fade(.5).mix(purple.500,.25)`
+
+**Invalid** \
+`red.500.fade(.5).mix(purple.500, .25)`
+
+## Color Syntax
 
 Colors are defined by using their name as a literal, following by an optional weight, if its a theme color that has weights defined. The following are valid color example of how one would begin an expression.
 
@@ -187,7 +520,7 @@ hsl(0,84.2%,60.2%)
 #e0e0e0
 ```
 
-### Method Chaining
+## Method Chaining
 
 Methods arguments are recursive. Each method must return a new instance of `Color`, so each method in the chain modifies a new instance until it reaches the end of the line.
 
@@ -202,5 +535,5 @@ coral.darken(.1).mix(bisque.darken(.1),.5)
 
 // Hex Codes
 #eee.darken(.1)
-#e0e0e0.darken(.1).mix(#eee,.5)
+#e0e0e0.darken(.1).green(100).mix(#eee.red(100),.5)
 ```

@@ -7,13 +7,13 @@
     <title>Tailwind Colorize Demo</title>
     <link rel="stylesheet" href="./index.css">
   </head>
-  <body class="container mx-auto text-xl">
+  <body class="container mx-auto text-xl pb-12">
     <h1 class="text-5xl font-bold mb-6">Tailwind Colorize Demo</h1>
 
     <div class="flex flex-col gap-4">
       <div>
-        <h2 class="text-4xl font-bold mb-4">Fade</h2>
-        
+        <h2 class="text-4xl font-bold mb-4">Config Colors</h2>
+
         <div class="flex gap-2">
           <div class="bg-water-lighter w-24 h-24 rounded-lg"></div>
           <div class="bg-water-light w-24 h-24 rounded-lg"></div>
@@ -22,6 +22,8 @@
           <div class="bg-water-darker w-24 h-24 rounded-lg"></div>
         </div>
 
+        <h2 class="text-4xl font-bold mb-4">Fade</h2>
+        
         <div class="flex gap-2">
           <div class="bgx-[red.500.fade(0)] w-24 h-24 rounded-lg"></div>
           <div class="bgx-[red.500.fade(.1)] w-24 h-24 rounded-lg"></div>
@@ -40,16 +42,16 @@
         <h2 class="text-4xl font-bold mb-4">Lighten</h2>
 
         <div class="flex gap-2">
-          <div class="bgx-[red.900.lighten(0)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.1)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.2)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.3)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.4)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.5)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.6)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.7)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.8)] w-24 h-24 rounded-lg"></div>
-          <div class="bgx-[red.900.lighten(.9)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(0)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.1)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.2)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.3)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.4)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.5)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.6)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.7)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.8)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.lighten(.9)] w-24 h-24 rounded-lg"></div>
         </div>
       </div>
 
@@ -101,6 +103,40 @@
           <div class="bgx-[red.500.whiten(.7)] w-24 h-24 rounded-lg"></div>
           <div class="bgx-[red.500.whiten(.8)] w-24 h-24 rounded-lg"></div>
           <div class="bgx-[red.500.whiten(.9)] w-24 h-24 rounded-lg"></div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-4xl font-bold mb-4">Blacken</h2>
+  
+        <div class="flex gap-2">
+          <div class="bgx-[red.800.blacken(0)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.1)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.2)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.3)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.4)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.5)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.6)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.7)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.8)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.blacken(.9)] w-24 h-24 rounded-lg"></div>
+        </div>
+      </div>
+      
+      <div>
+        <h2 class="text-4xl font-bold mb-4">Saturate</h2>
+  
+        <div class="flex gap-2">
+          <div class="bgx-[red.900.saturate(0)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.1)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.3)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.4)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.5)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.6)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.7)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.8)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(.9)] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.saturate(1)] w-24 h-24 rounded-lg"></div>
         </div>
       </div>
 
@@ -169,6 +205,23 @@
           <div class="bgx-[red.500.mix(yellow.100,.8)] w-24 h-24 rounded-lg"></div>
           <div class="bgx-[red.500.mix(yellow.100,.9)] w-24 h-24 rounded-lg"></div>
           <div class="bgx-[red.500.mix(yellow.100,1)] w-24 h-24 rounded-lg"></div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-4xl font-bold mb-4">Negate</h2>
+  
+        <div class="flex gap-2">
+          <div class="bgx-[red.50.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.100.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.200.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.300.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.400.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.500.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.600.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.700.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.800.negate()] w-24 h-24 rounded-lg"></div>
+          <div class="bgx-[red.900.negate()] w-24 h-24 rounded-lg"></div>
         </div>
       </div>
     </div>
