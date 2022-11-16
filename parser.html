@@ -17,7 +17,7 @@
 
       import { parse } from './grammar.pegjs';
 
-      import useTheme from './lib/useTheme';
+      import useTheme from './lib/useResolvedConfig';
 
       // Resolve the config and run useTheme() to get the instance.
       const { transform } = useTheme(resolveConfig(tailwindConfig));

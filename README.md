@@ -26,9 +26,7 @@ I want to be able to manipulate colors syntaxically in a same way we already use
       - [NPM](#npm)
       - [Yarn](#yarn)
       - [PostCSS](#postcss)
-      - [A Note About PostCSS](#a-note-about-postcss)
-      - [Plugin Options](#plugin-options)
-  - [Getting Started](#getting-started)
+      - [Tailwind](#tailwind)
     - [Arbitrary Color Values](#arbitrary-color-values)
     - [Arbitrary Values using CSS](#arbitrary-values-using-css)
   - [Available Methods](#available-methods)
@@ -82,7 +80,7 @@ yarn add tailwind-colorize-plugin
 
 #### PostCSS
 
-To install the plugin, you must be sure to require it inside the `postcss.config.js` after Tailwind CSS.
+To install the plugin, you must be sure to require `tailwind-colorize-plugin` inside the `postcss.config.js` after Tailwind CSS.
 
 ```js
 // postcss.config.js
@@ -97,23 +95,19 @@ module.exports = {
 }
 ```
 
-#### A Note About PostCSS
+#### Tailwind
 
-Currently this plugin must be installed as a PostCSS plugin. We would be preferred to ship this as a Tailwind CSS plugin, but we haven't been able to find a way to make the parsing work properly without serious hacks. So the easiest solution was to just resolve the Tailwind CSS config and use PostCSS to parse the values.
+Tailwind Colorize ships with a Tailwind CSS plugin to make all the default colors available in intervals of 10 instead of just 100. This plugin is optional, but it super useful and the colors will automatically render in VSCode intellesense.
 
-If you know a cleaner way to parse the data, create an issue and let us know!
+```js
+// tailwind.config.js
+const colors = require('tailwind-colorize-plugin/extra-colors');
 
-#### Plugin Options
-```ts
-{
-    // Pass a resolved config object directly.
-    config: ThemeConfig 
-
-    // If no config object, the plugin will resolve the 
-    // config using a path. Default: 'tailwind.config.js'
-    configPath: string 
+module.exports = {
+    plugins: [
+        colors();
+    ]
 }
-```
 
 ## Getting Started
 

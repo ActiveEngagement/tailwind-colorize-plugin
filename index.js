@@ -1,36 +1,29 @@
-
-const resolveConfig = require('tailwindcss/resolveConfig');
+const path = require('path');
 const { parse } = require('./grammar');
-const useTheme = require('./lib/useTheme');
+const resolveConfig = require('./lib/resolveConfig');
+const useConfig = require('./lib/useConfig');
 
-module.exports = (opts = {
-    config: undefined,
-    configPath: './tailwind.config.js'
-}) => {
-    // Convert opts to an object if passed as a string. Assume the string is the
-    // tailwindcss config path.
-    if(typeof opts === 'string') {
-        opts = {
-            config: opts
-        }
-    }
+/**
+ * @type {import('postcss').PluginCreator}
+ */
+module.exports = configOrPath => {
+    const config = resolveConfig(configOrPath)
 
-    // Resolve the tailwind config.
-    const tailwindConfig = opts.config || resolveConfig(require(opts.configPath));
-
-    // Resolve the config and run useTheme() to get the instance.
-    const { transform } = useTheme(resolveConfig(tailwindConfig));
+    // Run useResolvedConfig() to get the transformer.
+    const { parse } = useConfig(config);
 
     // Define the PostCSS plugin to parse the Decl values.
     return {
         postcssPlugin: 'tailwind-colorize-plugin',
         Declaration(decl) {
             try {
-                decl.value = transform(parse(decl.value)).rgb().toString();
+                decl.value = parse(decl.value);
             }
             catch {
                 // If there is an error, just ignore the declaration.
             }
         }
     }
-}
+};
+
+module.exports.postcss = true;
