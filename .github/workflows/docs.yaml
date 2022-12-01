@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
-        - uses: peckjon/github-to-guru@master
+        - uses: jacoblockard99/github-to-guru@master
           env:
             GURU_USER_EMAIL: '${{ secrets.GURU_USER_EMAIL }}'
             GURU_USER_TOKEN: '${{ secrets.GURU_USER_TOKEN }}'
