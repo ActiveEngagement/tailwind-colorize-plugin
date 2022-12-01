@@ -1,0 +1,17 @@
+name: Docs
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: peckjon/github-to-guru@master
+          env:
+            GURU_USER_EMAIL: '${{ secrets.GURU_USER_EMAIL }}'
+            GURU_USER_TOKEN: '${{ secrets.GURU_USER_TOKEN }}'
+            GURU_COLLECTION_ID: '68517b36-e873-4bf0-8aae-c486ea45ea0d'
+            GURU_CARD_FOOTER: 'To edit this card, visit https://github.com/${{ github.repository }}'
+            GURU_COLLECTION_YAML: '.guru/collection.yaml'
+            GURU_CARD_YAML: '.guru/cards.yaml'
