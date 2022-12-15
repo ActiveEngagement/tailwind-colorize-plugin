@@ -1,0 +1,19 @@
+name: Guru
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ActiveEngagement/theguru@v0.0
+        with:
+          user_email: ${{ secrets.GURU_USER_EMAIL }}
+          user_token: ${{ secrets.GURU_USER_TOKEN }}
+          file_path: README.md
+          card_title: Tailwind Colorize Plugin
+          collection_id: 68517b36-e873-4bf0-8aae-c486ea45ea0d
