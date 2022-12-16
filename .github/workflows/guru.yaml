@@ -19,5 +19,5 @@ jobs:
           card_title: Tailwind Colorize Plugin
           collection_id: 68517b36-e873-4bf0-8aae-c486ea45ea0d
           card_footer: |
-            "# Imported From GitHub"
+            \# Imported From GitHub
             This card was automatically imported from GitHub. Edit it at <${{ github.server_url }}/${{ github.repository }}>.
