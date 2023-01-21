@@ -1,8 +1,7 @@
 import { resolve } from 'path';
+import { createFilter } from 'rollup-pluginutils';
 import { defineConfig } from "vite";
 import commonjs from 'vite-plugin-commonjs';
-import { generate } from 'peggy';
-import { createFilter } from 'rollup-pluginutils';
 
 export default defineConfig({
     plugins: [

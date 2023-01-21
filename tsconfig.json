@@ -1,20 +1,11 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node",
-    "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "skipLibCheck": true
+    "module": "CommonJS",
+    "moduleResolution": "NodeNext",
+    "target": "ES2020",
+    "sourceMap": true,
+    "outDir": "dist"
   },
-  "include": ["lib", "lib/index.tsx.tssrc/index.tsindex.ts", "lib/main.tsn.tssrc/main.ts/main.ts", "index.js", "index.js"]
+  "include": ["src/**/*"]
 }

@@ -1,10 +1,27 @@
 {
   "name": "tailwind-colorize-plugin",
   "description": "The fluent and expressive way to manipulate colors in Tailwind CSS.",
-  "module": "index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/index.js",
+      "types": "./src/index.ts"
+    },
+    "./extra-colors": {
+      "import": "./src/extra-colors.ts",
+      "require": "./dist/extra-colors.js",
+      "types": "./src/extra-colors.ts"
+    },
+    "./lib": {
+      "import": "./src/lib.ts",
+      "require": "./dist/lib.js",
+      "types": "./src/lib.ts"
+    }
+  },
   "version": "0.4.0",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "dev": "vite",
     "preview": "vite preview",
     "compile": "peggy grammar.pegjs --output ./grammar.js",
@@ -21,6 +38,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
     "@jest/globals": "^29.3.1",
+    "@types/node": "^18.11.18",
     "autoprefixer": "^10.4.13",
     "coveralls": "^3.1.1",
     "eslint": "^8.27.0",
@@ -32,7 +50,7 @@
     "tailwindcss": "^3.2.4",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.6.4",
+    "typescript": "^4.9.4",
     "vite": "^3.2.0",
     "vite-plugin-commonjs": "^0.5.3",
     "vite-plugin-string": "^1.1.2"
