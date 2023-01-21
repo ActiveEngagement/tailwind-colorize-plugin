@@ -1,6 +1,10 @@
 {
   "name": "tailwind-colorize-plugin",
   "description": "The fluent and expressive way to manipulate colors in Tailwind CSS.",
+  "files": [
+    "dist",
+    "src"
+  ],
   "exports": {
     ".": {
       "import": "./src/index.ts",
