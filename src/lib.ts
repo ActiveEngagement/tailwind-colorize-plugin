@@ -126,6 +126,7 @@ export function useConfig(config: object): any {
         config,
         expand,
         parse,
-        themeColor
+        themeColor,
+        transform
     }
 }

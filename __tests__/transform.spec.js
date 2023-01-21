@@ -1,11 +1,11 @@
-import { describe, expect,  test } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import resolveConfig from 'tailwindcss/resolveConfig';
-import useTheme from '../lib/useResolvedConfig';
-import tailwindConfig from '../tailwind.config.js'
 import { parse as base } from '../grammar';
+import { useConfig } from '../src/lib';
+import tailwindConfig from '../tailwind.config.js';
 
 // Resolve the config and run useTheme() to get the instance.
-const { transform } = useTheme(resolveConfig(tailwindConfig));
+const { transform } = useConfig(resolveConfig(tailwindConfig));
 
 function parse(value) {
     return transform(base(value)).hex().toString()
