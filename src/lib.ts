@@ -1,18 +1,19 @@
 import Color from 'color';
 import get from 'lodash/get.js';
+import { Config } from 'tailwindcss';
 import toColorValue from 'tailwindcss/lib/util/toColorValue.js';
 import baseResolveConfig from 'tailwindcss/resolveConfig';
 import grammar from '../grammar.js';
 
 export function useColors(colors: object) {
-    return useConfig({
+    return useConfig(<Config> {
         theme: {
             colors
         }
     })
 }
 
-export function useConfig(config: object): any {
+export function useConfig(config: Config): any {
     config = baseResolveConfig(config);
 
     function transformArgument(arg: any) {
@@ -63,7 +64,7 @@ export function useConfig(config: object): any {
 
     function themeColor(path: string, weight: string|number, defaultValue?: any): any {
         const parsedPath = [path, weight].filter(value => !!value).join('.');
-        const color = get(config.theme.colors, parsedPath, defaultValue);
+        const color = get(config?.theme.colors, parsedPath, defaultValue);
 
         if (!color) {
             return;
@@ -74,7 +75,7 @@ export function useConfig(config: object): any {
 
     function expand(values?: string|string[], interval: number = 10) {
         if(!values) {
-            values = Object.keys(config.theme.colors)
+            values = Object.keys(config?.theme.colors)
         }
 
         function decimal(i: any, start: any): number {
@@ -109,7 +110,7 @@ export function useConfig(config: object): any {
         
         return Object.fromEntries(
             [].concat(values)
-                .map(value => [value, Object.entries(config.theme.colors[value])])
+                .map(value => [value, Object.entries(config?.theme.colors[value])])
                 .map(([key, colors]) => {
                     const subject = {};
 

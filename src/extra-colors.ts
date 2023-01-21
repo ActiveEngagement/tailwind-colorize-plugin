@@ -3,7 +3,13 @@ import plugin from 'tailwindcss/plugin.js';
 
 import { useColors } from './lib';
 
-export = plugin.withOptions((opts) => {
+interface ExtraColorOptions {
+    colors?: object,
+    expand?: string[],
+    interval?: number
+}
+
+export = plugin.withOptions((opts: ExtraColorOptions) => {
     return () => {
         //
     }
