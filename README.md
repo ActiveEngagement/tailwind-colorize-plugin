@@ -108,6 +108,7 @@ module.exports = {
         colors();
     ]
 }
+```
 
 ## Getting Started
 
